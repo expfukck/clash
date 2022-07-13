@@ -1,0 +1,10 @@
+payload:
+  - PROCESS-NAME,League of Legends
+  - PROCESS-NAME,LeagueCrashHandler
+  - PROCESS-NAME,LeagueClient
+  - PROCESS-NAME,LeagueClientUx
+  - PROCESS-NAME,LeagueClientUxRender-go
+  - PROCESS-NAME,RiotClientUx
+  - PROCESS-NAME,RiotClientUxRender
+  - PROCESS-NAME,RiotClientCrashHandler
+  - PROCESS-NAME,RiotClientServices
