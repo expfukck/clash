@@ -3,7 +3,7 @@ payload:
   - PROCESS-NAME,LeagueCrashHandler
   - PROCESS-NAME,LeagueClient
   - PROCESS-NAME,LeagueClientUx
-  - PROCESS-NAME,LeagueClientUxRender-go
+  - PROCESS-NAME,LeagueClientUxRender
   - PROCESS-NAME,RiotClientUx
   - PROCESS-NAME,RiotClientUxRender
   - PROCESS-NAME,RiotClientCrashHandler
