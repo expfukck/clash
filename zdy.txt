@@ -1,2 +1,14 @@
-payload:
- - '.riotgames.com'
+payload: 
+  - '+.riolearn.org'
+  - '+.riot-games.com'
+  - '+.riot.com'
+  - '+.riot.im'
+  - '+.riot.net'
+  - '+.riotcdn.net'
+  - '+.riotforgegames.com'
+  - '+.riotgames.com'
+  - '+.riotgames.info'
+  - '+.riotgames.net'
+  - '+.riotgames.tv'
+  - '+.riotpin.com'
+  - '+.riotpoints.com'
