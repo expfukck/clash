@@ -16,3 +16,5 @@ payload:
  - '+.riotpoints.com'
  - 'kr-blue.lol.sgp.pvp.net'
  - '+.pvp.net'
+ - '+.sgp.pvp.net'
+ - '+.lol.sgp.pvp.net'
