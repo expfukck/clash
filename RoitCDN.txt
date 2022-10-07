@@ -14,3 +14,5 @@ payload:
  - '+.riotgames.tv'
  - '+.riotpin.com'
  - '+.riotpoints.com'
+ - 'kr-blue.lol.sgp.pvp.net'
+ - '+.pvp.net'
