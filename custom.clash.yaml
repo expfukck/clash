@@ -1,0 +1,89 @@
+mixed-port: 7890
+allow-lan: true
+bind-address: "*"
+mode: rule
+log-level: info
+external-controller: 127.0.0.1:9090
+
+dns:
+    enable: true
+    ipv6: false
+    default-nameserver: [119.29.29.29,223.5.5.5]
+    enhanced-mode: fake-ip
+    fake-ip-range: 198.18.0.1/16
+    use-hosts: true
+    nameserver: [119.29.29.29,223.5.5.5,'https://doh.pub/dns-query', 'https://dns.alidns.com/dns-query']
+    fallback: ['https://doh.dns.sb/dns-query', 'https://dns.cloudflare.com/dns-query', 'https://dns.twnic.tw/dns-query', 'tls://8.8.4.4:853']
+    fallback-filter: { geoip: true, ipcidr: [240.0.0.0/4, 0.0.0.0/32] }
+proxies:
+
+
+
+
+#proxy-groups:
+#  - { name: "$app_name", type: select, proxies: ["自动选择", "故障转移"] }
+#  - { name: "自动选择", type: url-test, proxies: [], url: "http://www.gstatic.com/generate_204", interval: 86400 }
+#  - { name: "故障转移", type: fallback, proxies: [], url: "http://www.gstatic.com/generate_204", interval: 7200 }
+#  // 使用正则将节点名称包含香港的节点分配到这个规则中
+#  - { name: "香港", type: select, proxies: [/香港/, "自动选择"] }
+# REJECT 拦截
+# DIRECT 本机直连
+proxy-groups:
+    - { name: 🚀$app_name, type: select, proxies: [DIRECT] }
+    - { name: 🚀上网加速, type: select, proxies: [🚀$app_name] }
+    - { name: 🚀韩服LOL节点选择, type: select, proxies: [🚀$app_name] }
+    - { name: 🚀Cloudflare, type: select, proxies: [🚀$app_name] }
+    - { name: 🚀CDN节点选择, type: select, proxies: [🚀$app_name] }
+    - { name: 🇺🇲 美服, type: select, proxies: [🚀$app_name] }
+    - { name: 🇰🇵 韩服, type: select, proxies: [🚀$app_name] }
+    - { name: 🇨🇳 港服, type: select, proxies: [🚀$app_name] }
+    - { name: 🇭🇰 欧服, type: select, proxies: [🚀$app_name] }
+    - { name: 🇯🇵 日服, type: select, proxies: [🚀$app_name] }
+# behavior类型说明   classical进程  domain域名 ipcidr的ip
+rule-providers:
+    kr-lol: { type: http, behavior: classical, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/kr-lol.txt', path: ./aqlol/kr-lol.yaml, interval: 86400 }
+    kr-ip: { type: http, behavior: ipcidr, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/kr-ip.txt', path: ./aqlol/kr-ip.yaml, interval: 86400 }
+    zdy: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/zdy.txt', path: ./aqlol/zdy.yaml, interval: 86400 }
+    Akamai_CDN: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Akamai.txt', path: ./aqlol/Akamai_CDN.yaml, interval: 86400 }
+    Aliyun_SSL: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Aliyun-SSL.txt', path: ./aqlol/Aliyun_SSL.yaml, interval: 86400 }
+    Aliyun: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Aliyun.txt', path: ./aqlol/Aliyun.yaml, interval: 86400 }
+    Azure: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Azure.txt', path: ./aqlol/Azure.yaml, interval: 86400 }
+    Beluga: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Beluga.txt', path: ./aqlol/Beluga.yaml, interval: 86400 }
+    CDN77: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/CDN77.txt', path: ./aqlol/CDN77.yaml, interval: 86400 }
+    Cloudfront: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Cloudfront.txt', path: ./aqlol/Cloudfront.yaml, interval: 86400 }
+    Fastly: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Fastly.txt', path: ./aqlol/Fastly.yaml, interval: 86400 }
+    #Google-hosted: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Google-hosted.txt', path: ./aqlol/Google-hosted.yaml, interval: 86400 }
+    MaxCDN: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/MaxCDN.txt', path: ./aqlol/MaxCDN.yaml, interval: 86400 }
+    StackPath: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/StackPath.txt', path: ./aqlol/StackPath.yaml, interval: 86400 }
+    Proxy: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/proxy.txt', path: ./aqlol/proxy.yaml, interval: 86400 }
+    AWS-KR-IP: { type: http, behavior: ipcidr, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Clash-AWSKR-IPRules.txt', path: ./aqlol/AWS-KR-IP.yaml, interval: 86400 }
+    Roit-KR-IP: { type: http, behavior: ipcidr, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Clash-RoitKR-IPRules.txt', path: ./aqlol/Roit-KR-IP.yaml, interval: 86400 }
+    LAN: { type: http, behavior: ipcidr, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/lancidr.txt', path: ./aqlol/LAN.yaml, interval: 86400 }
+    Cloudflare-IP: { type: http, behavior: ipcidr, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/Clash-Cloudflare-IPRules.txt', path: ./aqlol/Cloudflare.yaml, interval: 86400 }
+    RoitCDN: { type: http, behavior: domain, url: 'https://cdn.jsdelivr.net/gh/expfukck/clash/RoitCDN.txt', path: ./aqlol/RoitCDN.yaml, interval: 86400 }
+rules:
+    - 'RULE-SET,LAN,DIRECT'
+    - 'RULE-SET,kr-lol,🚀韩服LOL节点选择'
+    - 'RULE-SET,kr-ip,🚀韩服LOL节点选择'
+    - 'RULE-SET,AWS-KR-IP,🚀韩服LOL节点选择'
+    - 'RULE-SET,Roit-KR-IP,🚀韩服LOL节点选择'
+    #- 'RULE-SET,Cloudflare-IP,🚀Cloudflare'
+    #- 'RULE-SET,Akamai_CDN,🚀CDN节点选择'
+    #- 'RULE-SET,Aliyun_SSL,DIRECT'
+    - 'RULE-SET,Aliyun,DIRECT'
+    #- 'RULE-SET,Azure,🚀CDN节点选择'
+    #- 'RULE-SET,Beluga,🚀CDN节点选择'
+    #- 'RULE-SET,CDN77,🚀CDN节点选择'
+    #- 'RULE-SET,Cloudfront,🚀CDN节点选择'
+    #- 'RULE-SET,Fastly,🚀CDN节点选择'
+    #- 'RULE-SET,Google-hosted,🚀CDN节点选择'
+    #- 'RULE-SET,Proxy,🚀上网加速'
+    #- 'RULE-SET,MaxCDN,🚀CDN节点选择'
+    #- 'RULE-SET,StackPath,🚀CDN节点选择'
+    - 'RULE-SET,RoitCDN,🚀CDN节点选择'
+    - 'GEOIP,CN,DIRECT'
+    - 'GEOIP,KR,🇰🇵 韩服'
+    #- 'GEOIP,JP,🇯🇵 日服'
+    #- 'GEOIP,US,🇺🇲 美服'
+    #- 'GEOIP,HK,🇨🇳 港服'
+    #- 'MATCH,🚀$app_name'
